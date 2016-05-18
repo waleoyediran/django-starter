@@ -37,6 +37,10 @@ PREREQ_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'social.apps.django_app.default',
 ]
 
 PROJECT_APPS = [
@@ -45,6 +49,16 @@ PROJECT_APPS = [
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
